@@ -21,7 +21,7 @@ const GetProducts: React.FC<GetProductsProps> = ({ onCartUpdate }) => {
     const fetchProducts = async () => {
       try {
         const url = `${process.env.API_URL}/products`;
-        console.log("Fetching products from:", url);
+        console.log("Fetching products from: ", url);
 
         const data = await getProductService(url);
         console.log("Productos recibidos: ", data);  // <-- Aquí debes ver los productos

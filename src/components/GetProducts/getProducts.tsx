@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import IProduct from "../../interface/IProduct";
 import { getProductService } from "../../service/productService";
-import Link from 'next/link';  // Importar Link de Next.js
-import { FaShoppingCart } from 'react-icons/fa'; // Icono del carrito para la animación
-import Image from 'next/image'; // Importar Image de Next.js para optimización
+import Link from 'next/link';  
+import { FaShoppingCart } from 'react-icons/fa'; 
+import Image from 'next/image'; 
 
 interface GetProductsProps {
   onCartUpdate?: (count: number) => void;
@@ -15,41 +15,34 @@ const GetProducts: React.FC<GetProductsProps> = ({ onCartUpdate }) => {
   const [cartCount, setCartCount] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [isPopupVisible, setPopupVisible] = useState(false); // Estado para mostrar el popup
+  const [isPopupVisible, setPopupVisible] = useState(false); 
 
-  // Función para obtener los productos desde el servicio
-  const fetchProducts = async () => {
-    try {
-      const url = `${process.env.API_URL}/products`;
-      console.log("Fetching products from:", url);
-  
-      const response = await fetch(url);
-  
-      // Verificar si la respuesta es exitosa (status 2xx)
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-  
-      // Verificar si el contenido es JSON
-      const contentType = response.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("Respuesta no es un JSON válido");
-      }
-  
-      const data = await response.json();
-      console.log("Productos recibidos:", data);
-      setProducts(data);
-    } catch (error: any) {
-      console.error("Error al obtener productos:", error.message);
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-  
-
-  // useEffect para cargar los productos cuando el componente se monta
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const url = `${process.env.API_URL}/products`;
+        console.log("Fetching products from:", url);
+        
+        // Hacer la petición y obtener la respuesta
+        const response = await fetch(url);
+        
+        // Comprobar que la respuesta es válida y JSON
+        if (!response.ok) {
+          throw new Error("Error en la respuesta de la API");
+        }
+
+        const data = await response.json(); // Intentar parsear el JSON
+        console.log("Productos recibidos:", data);
+        
+        setProducts(data); // Guardar los productos en el estado
+      } catch (error: any) {
+        console.error("Error al obtener productos:", error.message);
+        setError("Error al obtener productos. Verifica la respuesta de la API.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProducts();
 
     const existingCart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -102,7 +95,7 @@ const GetProducts: React.FC<GetProductsProps> = ({ onCartUpdate }) => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div>{error}</div>;
   }
 
   return (
@@ -115,7 +108,7 @@ const GetProducts: React.FC<GetProductsProps> = ({ onCartUpdate }) => {
               <Image
                 src={product.image}
                 alt={product.name}
-                width={500} // Asegúrate de ajustar el tamaño adecuado
+                width={500} 
                 height={500}
                 className="w-full h-auto rounded-lg mb-2"
               />
@@ -128,18 +121,6 @@ const GetProducts: React.FC<GetProductsProps> = ({ onCartUpdate }) => {
           </div>
         ))}
       </div>
-
-      {/* Pop-up que aparece al agregar un producto */}
-      {isPopupVisible && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="bg-white border border-gray-300 p-6 rounded-lg shadow-lg text-center animate-fade-in">
-            <div className="relative flex items-center justify-center">
-              <FaShoppingCart className="text-green-500 w-12 h-12 animate-move-to-cart" />
-              <p className="text-lg font-semibold mt-4">Producto agregado exitosamente</p>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

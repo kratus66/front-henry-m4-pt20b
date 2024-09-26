@@ -20,7 +20,7 @@ const GetProducts: React.FC<GetProductsProps> = ({ onCartUpdate }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const url = `${process.env.API_URL}/products`;
+        const url = `${process.env.API_URL}/products/`;
         console.log('Fetching products from:', url);  // Agrega este log
         const data = await getProductService(url);
         setProducts(data);

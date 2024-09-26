@@ -6,7 +6,7 @@ function LandingPage() {
   const productsRef = useRef(null); // Crear una referencia para GetProducts
 
   const handleCartUpdate = (count) => {
-    console.log(`El carrito ahora tiene ${count} productos.`);
+    console.log(`El carrito ahora tiene ${count} productos..`);
   };
 
   // Función para hacer scroll hasta GetProducts

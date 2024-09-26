@@ -18,6 +18,11 @@ const nextConfig = {
         port: '3001',
         pathname: '/images/**',
       },
+      {
+        protocol: 'https',
+        hostname: '0f7b-190-143-75-12.ngrok-free.app',  // Añadir ngrok hostname
+        pathname: '/images/**',
+      },
     ],
   },
   // Configuración de variables de entorno
@@ -27,6 +32,7 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
 
 
 

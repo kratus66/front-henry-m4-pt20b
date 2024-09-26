@@ -1,9 +1,6 @@
-// src/components/Layout.js
 import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/footer/Footer';
 import { useState } from "react";
-import { Children } from 'react';
-
 
 function Layout({ children }) {
   const [cartCount, setCartCount] = useState(0);
@@ -20,3 +17,4 @@ function Layout({ children }) {
 }
 
 export default Layout;
+

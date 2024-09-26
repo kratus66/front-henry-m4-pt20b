@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent } from 'react'; // Asegúrate de importar FormEvent
 import { registerService } from '../../service/authServices/authServices';
 import Router from 'next/router';
 

@@ -21,7 +21,7 @@ const GetProducts: React.FC<GetProductsProps> = ({ onCartUpdate }) => {
     const fetchProducts = async () => {
       try {
         const url = `${process.env.API_URL}/products`;
-        console.log("Fetching products from:", url);
+        console.log("Fetching - products from:", url);
         
         // Hacer la petición y obtener la respuesta
         const response = await fetch(url);

@@ -96,13 +96,14 @@ const GetProducts: React.FC<GetProductsProps> = ({ onCartUpdate }) => {
           <div key={product.id} className="bg-white shadow-md rounded-lg p-4 m-2 hover:shadow-xl hover:scale-105 transform transition-transform transition-shadow duration-300">
             <h1 className="text-xl font-bold mb-2">{product.name}</h1>
             <Link href={`/product/${product.id}`}>
-              <Image
-                src={product.image}
-                alt={product.name}
-                width={500} // Asegúrate de ajustar el tamaño adecuado
-                height={500}
-                className="w-full h-auto rounded-lg mb-2"
-              />
+            <Image
+              src="/imagenInicio2.png"
+              alt="Imagen de Entrada"
+              layout="intrinsic"
+              width={600}
+              height={300}
+              className="object-contain"
+            />
               <h3 className="text-lg font-semibold mt-2">Precio: ${product.price}</h3>
               <p className="text-sm mt-2"><strong>Stock:</strong> {product.stock}</p>
             </Link>

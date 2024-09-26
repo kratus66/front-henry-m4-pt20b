@@ -17,19 +17,25 @@ const GetProducts: React.FC<GetProductsProps> = ({ onCartUpdate }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [isPopupVisible, setPopupVisible] = useState(false); // Estado para mostrar el popup
 
+  // Función para obtener los productos desde el servicio
+  const fetchProducts = async () => {
+    try {
+      const url = `${process.env.API_URL}/products`;
+      console.log("Fetching products from:", url);
+      
+      const data = await getProductService(url);
+      console.log("Productos recibidos:", data);  // <-- Aquí debes ver los productos
+      setProducts(data);
+    } catch (error: any) {
+      console.error("Error al obtener productos:", error.message);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // useEffect para cargar los productos cuando el componente se monta
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const url = `${process.env.API_URL}/products/`;
-        console.log('Fetching products from:', url);  // Agrega este log
-        const data = await getProductService(url);
-        setProducts(data);
-      } catch (error: any) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchProducts();
 
     const existingCart = JSON.parse(localStorage.getItem("cart") || "[]");

@@ -1,4 +1,4 @@
-import GetProducts from "../../components/GetProducts/GetProducts";
+import GetProducts from "../../components/GetProducts/getProducts";
 /* import { products } from "../../helpers/Products"; */
 
 function ProductPage() {

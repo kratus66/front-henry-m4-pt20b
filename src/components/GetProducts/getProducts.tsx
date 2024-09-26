@@ -22,9 +22,22 @@ const GetProducts: React.FC<GetProductsProps> = ({ onCartUpdate }) => {
     try {
       const url = `${process.env.API_URL}/products`;
       console.log("Fetching products from:", url);
-      
-      const data = await getProductService(url);
-      console.log("Productos recibidos:", data);  // <-- Aquí debes ver los productos
+  
+      const response = await fetch(url);
+  
+      // Verificar si la respuesta es exitosa (status 2xx)
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      // Verificar si el contenido es JSON
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Respuesta no es un JSON válido");
+      }
+  
+      const data = await response.json();
+      console.log("Productos recibidos:", data);
       setProducts(data);
     } catch (error: any) {
       console.error("Error al obtener productos:", error.message);
@@ -33,6 +46,7 @@ const GetProducts: React.FC<GetProductsProps> = ({ onCartUpdate }) => {
       setLoading(false);
     }
   };
+  
 
   // useEffect para cargar los productos cuando el componente se monta
   useEffect(() => {

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'; // Importar useRef para crear la referencia
-import GetProducts from "../components/GetProducts/GetProducts"; // Importar el componente correctamente
+import GetProducts from "../components/GetProducts/getProducts"; // Importar el componente correctamente
 import Image from 'next/image'; // Importar el componente de imagen de Next.js
 
 function LandingPage() {
@@ -22,14 +22,14 @@ function LandingPage() {
       <main className="pt-20">
         {/* Sección de bienvenida con la imagen centrada */}
         <div className="relative flex justify-center items-center h-[200px] md:h-[300px] lg:h-[400px] mx-auto" style={{ maxWidth: '600px' }}>
-          <Image
-            src="/imagenInicio2.png"
-            alt="Imagen de Entrada"
-            layout="intrinsic"
-            width={600}
-            height={300}
-            className="object-contain"
-          />
+        <Image
+          src="/imagenInicio2.png"
+          alt="Imagen de Entrada"
+          width={600}
+          height={300}
+          className="object-contain"
+        />
+
           {/* Botón en el centro de la imagen */}
           <button
             className="absolute bg-red-600 text-white px-6 py-3 rounded-full text-lg md:text-xl lg:text-2xl hover:bg-red-700"

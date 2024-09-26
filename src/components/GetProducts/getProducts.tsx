@@ -24,7 +24,7 @@ const GetProducts: React.FC<GetProductsProps> = ({ onCartUpdate }) => {
         console.log("Fetching products from:", url);
 
         const data = await getProductService(url);
-        console.log("Productos recibidos:", data);  // <-- Aquí debes ver los productos
+        console.log("Productos recibidos: ", data);  // <-- Aquí debes ver los productos
         setProducts(data);
       } catch (error: any) {
         console.error("Error al obtener productos:", error.message);

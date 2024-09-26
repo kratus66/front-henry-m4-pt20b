@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'; // Importar useRef para crear la referencia
-import GetProducts from "../components/GetProducts/getProducts"; // Importar el componente correctamente
+import GetProducts from "../components/GetProducts/TempGetProducts"; // Importar el componente correctamente
 import Image from 'next/image'; // Importar el componente de imagen de Next.js
 
 function LandingPage() {
